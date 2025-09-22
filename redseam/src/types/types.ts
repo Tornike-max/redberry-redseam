@@ -2,6 +2,6 @@ export interface RegisterData {
   username: string;
   email: string;
   password: string;
-  confirmPassword: string;
+  password_confirmation: string;
   avatar?: File | null;
 }

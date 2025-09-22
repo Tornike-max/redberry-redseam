@@ -14,7 +14,7 @@ const RegisterForm = () => {
       username: "",
       email: "",
       password: "",
-      confirmPassword: "",
+      password_confirmation: "",
       avatar: null,
     },
   });
@@ -150,7 +150,7 @@ const RegisterForm = () => {
       <div className="w-full pt-[24px] flex flex-col gap-[8px]">
         <input
           type="password"
-          {...register("confirmPassword", {
+          {...register("password_confirmation", {
             required: "Please confirm your password",
             validate: (value, formValues) =>
               value === formValues.password || "Passwords do not match",
@@ -158,12 +158,12 @@ const RegisterForm = () => {
           placeholder="Confirm Password"
           autoComplete="new-password"
           className={`w-full h-[42px] border rounded-[8px] px-[16px] py-[18px] font-poppins text-[14px] outline-none ${
-            errors.confirmPassword ? "border-red-500" : "border-[#E6E8EC]"
+            errors.password_confirmation ? "border-red-500" : "border-[#E6E8EC]"
           }`}
         />
-        {errors.confirmPassword && (
+        {errors.password_confirmation && (
           <span className="text-red-500 text-sm">
-            {errors.confirmPassword.message}
+            {errors.password_confirmation.message}
           </span>
         )}
       </div>

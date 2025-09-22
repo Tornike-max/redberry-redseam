@@ -9,7 +9,6 @@ export const userRegistration = async (data: RegisterData) => {
         "Content-Type": "application/json",
       },
     });
-    console.log(response);  
     return response;
   } catch (error) {
     if (axios.isAxiosError(error)) {
