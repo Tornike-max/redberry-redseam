@@ -2,21 +2,38 @@ import axios from "axios";
 import type { RegisterData } from "../types/types";
 import { API_BASE_URL, REGISTER_ENDPOINT } from "../constants/constants";
 
+
 export const userRegistration = async (data: RegisterData) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}${REGISTER_ENDPOINT}`, data, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    let payload: unknown = data;
+    let headers: Record<string, string> = { "Content-Type": "application/json" };
+
+    if (data.avatar) {
+      const formData = new FormData();
+      Object.keys(data).forEach((key) => {
+        const value = (data as never)[key];
+        if (value !== undefined && value !== null) {
+          formData.append(key, value);
+        }
+      });
+
+      payload = formData;
+      headers = { "Content-Type": "multipart/form-data" };
+    }
+
+    const response = await axios.post(
+      `${API_BASE_URL}${REGISTER_ENDPOINT}`,
+      payload,
+      { headers }
+    );
+
     return response;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      throw new Error(
-        error.response?.data.message || "An axios error occurred"
-      );
+      throw new Error(error.response?.data.message || "An axios error occurred");
     } else {
       throw new Error("An unexpected error occurred");
     }
   }
 };
+;

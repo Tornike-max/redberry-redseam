@@ -8,3 +8,7 @@ export const USER_PROFILE_ENDPOINT = "/user/profile";
 export const PRODUCTS_ENDPOINT = "/products";
 
 export const ORDERS_ENDPOINT = "/orders";
+
+
+
+export const token = '3054|lqAumuLGEUc55mfBUap09zta6XmlC0XL4HrntNMXaf246773';
