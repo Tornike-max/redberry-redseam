@@ -13,3 +13,11 @@ export interface SignInData {
   password_confirmation: string;
   avatar?: File | null;
 }
+
+export interface User {
+  id: number;
+  username: string;
+  is_admin:number;
+  email: string;
+  avatar?: string;
+}
