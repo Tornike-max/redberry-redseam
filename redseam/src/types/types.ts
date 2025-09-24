@@ -21,3 +21,47 @@ export interface User {
   email: string;
   avatar?: string;
 }
+
+export interface ProductQueryParams {
+  page?: number;
+  filter?: {
+    price_from?: number;
+    price_to?: number;
+  };
+  sort?: 'price_asc' | 'price_desc'; 
+}
+
+export interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  release_year: string;
+  cover_image: string;
+  images: string[];
+  available_colors: string[];
+  available_sizes: string[];
+}
+
+export interface PaginationLinks {
+  first: string | null;
+  last: string | null;
+  prev: string | null;
+  next: string | null;
+}
+
+export interface PaginationMeta {
+  current_page: number;
+  from: number;
+  last_page: number;
+  path: string;
+  per_page: number;
+  to: number;
+  total: number;
+}
+
+export interface ProductsResponse {
+  data: Product[];
+  links: PaginationLinks;
+  meta: PaginationMeta;
+}
