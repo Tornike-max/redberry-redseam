@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useRef, useState } from "react";
 import type { RegisterData } from "../types/types";
 import { useRegister } from "../hooks/useRegister";
+import { Link } from "react-router-dom";
 
 const RegisterForm = () => {
   const {
@@ -174,6 +175,10 @@ const RegisterForm = () => {
       >
         {isPending ? "Registering" : "Register"}
       </button>
+      <div className="w-full flex justify-center items-center pt-[24px] gap-[8px]">
+        <p className="text-center font-[400] text-[14px] leading-[100%] text-[#3E424A]">Already member?</p>
+        <Link to="/signin" className="font-[500] text-[14px] leading-[100%] text-[#FF4000]">Log in</Link>
+      </div>
     </form>
   );
 };

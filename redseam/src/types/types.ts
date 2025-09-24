@@ -5,3 +5,11 @@ export interface RegisterData {
   password_confirmation: string;
   avatar?: File | null;
 }
+
+export interface SignInData {
+  username: string;
+  email: string;
+  password: string;
+  password_confirmation: string;
+  avatar?: File | null;
+}
