@@ -28,7 +28,7 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed w-full h-[80px] flex items-center justify-between z-50 py-[28px] px-[100px]">
+    <header className="w-full h-[80px] flex items-center justify-between z-50 py-[28px] px-[100px]">
       <Link to={'/'} className="flex justify-start items-center gap-1">
         <img
           onClick={() => navigate("/")}
@@ -40,17 +40,19 @@ const Header = () => {
       </Link>
       <div className="flex justify-center items-center gap-1 relative">
         {user !== null ? (
-          <div className="flex items-center justify-between gap-[10px]" ref={dropdownRef}>
+          <div className="w-[108px] flex items-center justify-between gap-[10px]" ref={dropdownRef}>
             <FaCartShopping className="text-xl cursor-pointer" />
-            <img
-              src={user.avatar ? user.avatar : "/logo/user.png"}
-              alt="User Avatar"
-              className="w-[40px] h-[40px] rounded-full object-cover cursor-pointer"
-            />
-            <IoIosArrowDown
-              className={`cursor-pointer transition-transform ${dropdownOpen ? "rotate-180" : ""}`}
-              onClick={() => setDropdownOpen(!dropdownOpen)}
-            />
+            <div className='flex items-center gap-2'>
+              <img
+                src={user.avatar ? user.avatar : "/logo/user.png"}
+                alt="User Avatar"
+                className="w-[40px] h-[40px] rounded-full object-cover cursor-pointer"
+              />
+              <IoIosArrowDown
+                className={`cursor-pointer transition-transform ${dropdownOpen ? "rotate-180" : ""}`}
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+              />
+            </div>
             {dropdownOpen && (
               <div className="absolute right-0 top-[50px] bg-white shadow-lg rounded-xl p-2 min-w-[120px]">
                 <button

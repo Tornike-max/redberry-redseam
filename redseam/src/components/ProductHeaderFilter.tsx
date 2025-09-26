@@ -32,7 +32,7 @@ const ProductHeaderFilter = () => {
                     </button>
                     
                     {dropdownOpen && (
-                        <div className="absolute right-0 top-[50px] bg-white shadow-lg rounded-xl p-[16px] min-w-[223px]">
+                        <div className="absolute right-0 top-[50px] bg-white shadow-lg rounded-xl p-[16px] min-w-[223px] z-50">
                             <h2 className='text-[16px] font-[600] leading-[100%] text-[#10151F]'>Sort by</h2>
                             <button
                                 onClick={() => { }}
