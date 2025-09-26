@@ -2,15 +2,21 @@ import { useSearchParams } from "react-router-dom";
 import ProductHeaderFilter from "../../components/ProductHeaderFilter";
 import { useGetProducts } from "../../hooks/useGetProducts";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import Spinner from "../../components/Spinner";
+import { useEffect } from "react";
 
 const Index = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const page = Number(searchParams.get("page") || "1"); 
 
+  useEffect(() => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}, [page]);
+
   const { productsData, isPending } = useGetProducts({ page }); 
 
   if (isPending) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   const changeParams = (key: string, value: string) => {
@@ -19,9 +25,13 @@ const Index = () => {
     setSearchParams(newParams);
   };
 
+  const from = (productsData?.meta?.current_page - 1) * 10 + 1;
+  const to = Math.min(productsData?.meta?.current_page * 10, productsData?.meta?.total);
+  const total = productsData?.meta?.total || 0;
+  console.log(productsData)
   return (
     <div className="w-full flex justify-center items-center pt-[72px] px-[100px] flex-col">
-      <ProductHeaderFilter />
+      <ProductHeaderFilter from={from} to={to} total={total}/>
       <div className="w-full grid grid-cols-4 space-x-[24px] space-y-[48px] mt-[32px]">
         {productsData?.data.map((product) => (
           <div
