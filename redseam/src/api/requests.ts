@@ -103,3 +103,20 @@ export const getProductsData = async (params?: ProductQueryParams) => {
     }
   }
 };
+
+export const getProductById = async (id: string) => {
+  try{
+    const response = await axios.get(`${API_BASE_URL}${PRODUCTS_ENDPOINT}/${id}`,{
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(error.response?.data.message || "An axios error occurred");
+    } else {
+      throw new Error("An unexpected error occurred");
+    }
+  }
+}

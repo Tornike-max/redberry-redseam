@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import ProductHeaderFilter from "../../components/ProductHeaderFilter";
 import { useGetProducts } from "../../hooks/useGetProducts";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
@@ -34,7 +34,8 @@ const Index = () => {
       <ProductHeaderFilter from={from} to={to} total={total}/>
       <div className="w-full grid grid-cols-4 space-x-[24px] space-y-[48px] mt-[32px]">
         {productsData?.data.map((product) => (
-          <div
+          <Link
+            to={`/product/${product.id}`}
             key={product.id}
             className="max-w-[412px] w-full h-[614px] rounded-[10px] flex flex-col justify-evenly overflow-hidden group transition-shadow duration-300 cursor-pointer"
           >
@@ -55,7 +56,7 @@ const Index = () => {
                 ${product.price}
               </p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 

@@ -28,7 +28,7 @@ export interface ProductQueryParams {
     price_from?: number;
     price_to?: number;
   };
-  sort?: 'price_asc' | 'price_desc'; 
+  sort?: 'price' | '-price' | 'created_at'; 
 }
 
 export interface Product {
