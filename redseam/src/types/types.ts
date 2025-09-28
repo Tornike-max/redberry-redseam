@@ -65,3 +65,23 @@ export interface ProductsResponse {
   links: PaginationLinks;
   meta: PaginationMeta;
 }
+
+
+export interface Brand {
+  id: number;
+  name: string;
+  image: string;
+}
+
+export interface ProductShow {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  release_year: string; 
+  cover_image: string;
+  images: string[];
+  available_colors: string[];
+  available_sizes: string[];
+  brand: Brand;
+}

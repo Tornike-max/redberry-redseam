@@ -4,10 +4,14 @@ import { FaCartShopping } from "react-icons/fa6";
 import { IoIosArrowDown } from "react-icons/io";
 import { useEffect, useRef, useState } from 'react';
 
+import CartDrawer from './CartDrawer';
+
 const Header = () => {
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const [cartDrawerOpen, setCartDrawerOpen] = useState(false); // <-- drawer state
+
   const getUser = localStorage.getItem("auth_user");
   const user = getUser ? JSON.parse(getUser) : null;
 
@@ -38,10 +42,18 @@ const Header = () => {
         />
         <span className='font-[600] text-[16px] leading-[100%] text-[#10151F]'>RedSeam Clothing</span>
       </Link>
+
       <div className="flex justify-center items-center gap-1 relative">
         {user !== null ? (
           <div className="w-[108px] flex items-center justify-between gap-[10px]" ref={dropdownRef}>
-            <FaCartShopping className="text-xl cursor-pointer" />
+            
+            {/* CART ICON -> open drawer */}
+            <FaCartShopping
+              className="text-xl cursor-pointer"
+              onClick={() => setCartDrawerOpen(true)}
+            />
+
+            {/* USER DROPDOWN */}
             <div className='flex items-center gap-2'>
               <img
                 src={user.avatar ? user.avatar : "/logo/user.png"}
@@ -68,7 +80,7 @@ const Header = () => {
           <>
             <HiUser />
             <Link
-              to={"/login"}
+              to={"/signin"}
               className="text-[#10151F] text-[12px] font-[500] font-poppins"
             >
               Log in
@@ -77,8 +89,12 @@ const Header = () => {
         )}
       </div>
 
+      {/* CART DRAWER */}
+      {cartDrawerOpen &&       
+        <CartDrawer cartDrawerOpen={cartDrawerOpen} setCartDrawerOpen={setCartDrawerOpen}/>
+    }
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
