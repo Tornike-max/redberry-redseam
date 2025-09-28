@@ -11,6 +11,7 @@ export const CART_PRODUCTS_ENDPOINT_ADD = "/cart/products";
 
 export const CART_PRODUCTS_ENDPOINT_DELETE = "/cart/products";
 
+export const CART_PRODUCTS_ENDPOINT_CHECKOUT = "/cart/checkout";
 
 export const CART_PRODUCTS_ENDPOINT = "/cart";
 

@@ -28,7 +28,7 @@ const Index = () => {
   const from = (productsData?.meta?.current_page - 1) * 10 + 1;
   const to = Math.min(productsData?.meta?.current_page * 10, productsData?.meta?.total);
   const total = productsData?.meta?.total || 0;
-  console.log(productsData)
+  
   return (
     <div className="w-full flex justify-center items-center pt-[72px] px-[100px] flex-col">
       <ProductHeaderFilter from={from} to={to} total={total}/>

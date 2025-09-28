@@ -1,3 +1,4 @@
+
 export interface RegisterData {
   username: string;
   email: string;
@@ -32,10 +33,13 @@ export interface ProductQueryParams {
 }
 
 export interface Product {
+  size?: string;
+  quantity?: number;
   id: number;
   name: string;
   description: string;
   price: number;
+  color?:string;
   release_year: string;
   cover_image: string;
   images: string[];
@@ -80,6 +84,9 @@ export interface ProductShow {
   price: number;
   release_year: string; 
   cover_image: string;
+  color?:string;
+  size?: string;
+  quantity?: number;
   images: string[];
   available_colors: string[];
   available_sizes: string[];

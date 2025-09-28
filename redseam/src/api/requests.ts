@@ -1,6 +1,6 @@
 import axios from "axios";
 import type { ProductQueryParams, RegisterData, SignInData } from "../types/types";
-import { API_BASE_URL, CART_PRODUCTS_ENDPOINT, CART_PRODUCTS_ENDPOINT_ADD, CART_PRODUCTS_ENDPOINT_DELETE, LOGIN_ENDPOINT, PRODUCTS_ENDPOINT, REGISTER_ENDPOINT } from "../constants/constants";
+import { API_BASE_URL, CART_PRODUCTS_ENDPOINT, CART_PRODUCTS_ENDPOINT_ADD, CART_PRODUCTS_ENDPOINT_CHECKOUT, CART_PRODUCTS_ENDPOINT_DELETE, LOGIN_ENDPOINT, PRODUCTS_ENDPOINT, REGISTER_ENDPOINT } from "../constants/constants";
 
 
 export const userRegistration = async (data: RegisterData) => {
@@ -213,3 +213,29 @@ export const deleteCartItem = async (product_id:number,color:string,size:string)
     }
   }
 }
+
+export const checkoutCart = async (data:{
+            name:string;
+            surname:string;
+            email:string;
+            address: string;
+            zip_code: string;
+        }) => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}${CART_PRODUCTS_ENDPOINT_CHECKOUT}`,data,{
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
+        "Content-Type": "application/json",
+      },
+    })
+    return response;
+  }
+  catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(error.response?.data.message || "An axios error occurred");
+    } else {
+      throw new Error("An unexpected error occurred");
+    }
+  }
+}
+

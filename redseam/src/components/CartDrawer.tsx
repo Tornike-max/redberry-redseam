@@ -145,8 +145,10 @@ export default function CartDrawer({
                                 </div>
                             </div>
 
-                            {/* Checkout button */}
-                            <button className="w-[460px] h-[59px] mt-[40px] bg-[#FF4000] rounded-[10px] flex justify-center items-center text-white text-[18px] font-[500] hover:shadow-md">
+                            <button onClick={()=>{
+                                setCartDrawerOpen(false);
+                                navigate("/checkout")
+                            }} className="w-[460px] h-[59px] mt-[40px] bg-[#FF4000] rounded-[10px] flex justify-center items-center text-white text-[18px] font-[500] hover:shadow-md">
                                 Checkout
                             </button>
                         </>
